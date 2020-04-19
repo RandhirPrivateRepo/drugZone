@@ -39,11 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # APIS APP
     'drugZoneUsers.apps.DrugzoneusersConfig',
-    'dashboard',
-    'drugZoneAdmin',
+
+   
     'rest_framework',
     'rest_framework.authtoken',
+
+
+    # Dashboard Apps
+
+    'DashBoard',
+    'UserJourney'
 ]
 
 MIDDLEWARE = [
@@ -83,9 +90,9 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_drugzone',
-        'USER': 'tarjeet',
-        'PASSWORD': 'admin',
+        'NAME': 'db_local_drugzone',
+        'USER': 'ranapostgres',
+        'PASSWORD': 'root',
         'HOST':'localhost',
         'PORT':''
         # 'OPTIONS': {

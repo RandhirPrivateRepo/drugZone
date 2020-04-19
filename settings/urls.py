@@ -22,9 +22,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 	path('jet/', include('jet.urls', 'jet')),
-	path('api/v1/user/', include('drugZoneUsers.urls')),
-    path('', include('drugZoneAdmin.urls')),    
+	path('api/v1/user/', include('drugZoneUsers.urls')),    
     path('admin/', admin.site.urls),
+    path('', include('UserJourney.urls')),
+    path('dashboard/', include('DashBoard.urls')),
     # path('admin/internal/', admin.site.urls),
 
 
