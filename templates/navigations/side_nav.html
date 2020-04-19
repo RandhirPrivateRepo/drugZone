@@ -1,9 +1,13 @@
-{% extends 'bases/base_main.html' %}
+
 
 {% load static %}
 
-{% block side_navigation %}
+{% block head_navigation %}
+{% include 'navigations/header_nav.html' %}
+{% endblock %}
 
+
+{% block side_navigation %}
 
  <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
@@ -73,7 +77,7 @@
                         </li>
 
                          <li>
-                            <a href=""><i class="fa fa-hospital-o"></i> <span>Lab Admin</span></a>
+                            <a href="{% url 'LabAdmin:list_view' %}"><i class="fa fa-hospital-o"></i> <span>Lab Admin</span></a>
                         </li>
 						
 						  <li>

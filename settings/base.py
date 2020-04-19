@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     # Dashboard Apps
 
     'DashBoard',
-    'UserJourney'
+    'UserJourney',
+    'LabAdmin'
 ]
 
 MIDDLEWARE = [

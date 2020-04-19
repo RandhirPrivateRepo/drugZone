@@ -26,6 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('UserJourney.urls')),
     path('dashboard/', include('DashBoard.urls')),
+    path('labadmin/', include('LabAdmin.urls')),
+
     # path('admin/internal/', admin.site.urls),
 
 
