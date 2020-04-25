@@ -18,8 +18,8 @@ class CustomUserAdmin(UserAdmin):
 		('Permissions', {'fields': ('is_active', 'is_staff', 'user_permissions')}),
     )
 
-# admin.site.unregister(Group)
-# admin.site.unregister(Token)
+admin.site.unregister(Group)
+admin.site.unregister(Token)
 admin.site.register(CustomUser , CustomUserAdmin)
 
 # admin.site.register(ContactUs)

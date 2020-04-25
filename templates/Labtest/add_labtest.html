@@ -1,0 +1,84 @@
+{% include 'navigations/side_nav.html' %}
+
+
+
+{% block content %}
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <span class="text-danger">{{ error }}</span>
+
+                <h4 class="page-title">Add Lab Test </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form  action="{% url 'DashboardApp:dashboard__labtest_add_view' %}" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="name" required="required">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Price (MRP) <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name='actualPrice' required="required">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Dicounted Price <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name='discountedPrice'>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Desription <span class="text-danger">*</span></label>
+                                
+                                <input class="form-control" type="text" name="testDescription" >
+                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Image <span class="text-danger">*</span></label>
+                                <div>
+                                    <input name="image" class="with-border" type="file" required accept="image/x-png,image/gif,image/jpeg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Test Included:</label>
+                                  <select multiple class="form-control" name="testIncluded">
+                                    {% for test in tests %}
+                                        <option value="{{ test.id }}">{{ test.name }}</option>
+                                    {% endfor %}
+                                    
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Test Samples:</label>
+                                  <select multiple class="form-control"  name="testRequirements">
+                                    {% for sample in samples %}
+                                        <option value="{{ sample.id }}">{{ sample.name }}</option>
+                                    {% endfor %}
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn">Create Lab Test</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
