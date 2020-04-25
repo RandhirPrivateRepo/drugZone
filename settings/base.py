@@ -91,9 +91,9 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_local_drugzone',
-        'USER': 'ranapostgres',
-        'PASSWORD': 'root',
+        'NAME': 'db_drugzone',
+        'USER': 'tarjeet',
+        'PASSWORD': 'admin',
         'HOST':'localhost',
         'PORT':''
         # 'OPTIONS': {
@@ -103,24 +103,6 @@ DATABASES = {
 }
     
 }
-
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'drugzonedb',
-#         'USER': 'tarjeet',
-#         'PASSWORD': 'admin123',
-#         'HOST':'drugdb.cik2g78ubqvd.ap-south-1.rds.amazonaws.com',
-#         'PORT':'5433'
-#         # 'OPTIONS': {
-#         # "init_command": "SET foreign_key_checks = 0;", 
-#         # }
-
-# }
-    
-# }
 
 
 AUTH_USER_MODEL = 'drugZoneUsers.CustomUser'
