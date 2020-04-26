@@ -1,0 +1,78 @@
+{% include 'navigations/side_nav.html' %}
+
+
+
+{% block content %}
+
+   <div class="page-wrapper">
+            <div class="content">
+                    <div class="row">
+                    <div class="col-sm-5 col-5">
+                        <h4 class="page-title">Update SubCategory</h4>
+                    </div>
+                    <div class="col-sm-7 col-7 text-right m-b-30">
+                        <a href="{% url 'CategoryAndSubCategory:subcategory_list' %}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> List SubCategory</a>
+                    </div>
+                </div>
+                </div>
+
+
+
+                {% if error %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Warning!</strong> {{ error }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                {% endif %}
+
+                 {% if success %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> {{ success }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                {% endif %}
+
+
+                    
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form  action="{% url 'CategoryAndSubCategory:subcategory_update' pk=subcategoryObj.pk%}"  method="post">
+                    {% csrf_token %}
+                            <div class="form-group">
+                                <label>SubCategory Name</label>
+                                <input class="form-control" type="text" name = "subcategory_name" required="required" value = "{{ subcategoryObj.subCategoryName}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                
+                                 <input class="form-control" type="text" name = "subcategory_description" value = "{{ subcategoryObj.description }}">
+                            </div>
+                            <div class="form-group row">
+                                            <label class="col-md-3 col-form-label">Select Category</label>
+                                         <select class="browser-default custom-select" name = "subcategory_categoryid">
+                                            {% for category in categories %}
+                                               <option value="{{category.id}}"
+                                                   {% if category.id == subcategoryObj.category.id %}selected="selected"{% endif %}>
+                                                   {{category.categoryName|capfirst}}
+                                               </option>
+                                            {% endfor %}
+                                        </select>
+                                        </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Update SubCategory</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        
+        </div>
+
+{% endblock %}
+

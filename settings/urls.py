@@ -27,8 +27,9 @@ urlpatterns = [
     path('', include('UserJourney.urls')),
     path('dashboard/', include('DashBoard.urls')),
     path('labadmin/', include('LabAdmin.urls')),
+    path('categorysubcategory/', include('CategoryAndSubcategory.urls')),
+    path('medicines/', include('Medicines.urls')),
 
     # path('admin/internal/', admin.site.urls),
-
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

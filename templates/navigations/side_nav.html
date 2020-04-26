@@ -25,13 +25,13 @@
                     <a href="#"><i class=""></i> <span>Products</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fad fa-pills"></i> <span>Medicines</span></a>
+                    <a href="{% url 'Medicine:list_medicine' %}"><i class="fad fa-pills"></i> <span>Medicines</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fad fa-pills"></i> <span>Categories</span></a>
+                    <a href="{% url 'CategoryAndSubCategory:category_list' %}"><i class="fad fa-pills"></i> <span>Categories</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fad fa-pills"></i> <span>Sub-Categories</span></a>
+                    <a href="{% url 'CategoryAndSubCategory:subcategory_list' %}"><i class="fad fa-pills"></i> <span>Sub-Categories</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-wheelchair"></i> <span>Prescriptions</span></a>

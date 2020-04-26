@@ -54,6 +54,16 @@
 <script src="{% static 'assets/js/Chart.bundle.js' %}"></script>
 <script src="{% static 'assets/js/chart.js' %}"></script>
 <script src="{% static 'assets/js/app.js' %}"></script>
+<script src="{% static 'assets/js/moment.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}"></script>
+  <script src="{% static 'assets/js/select2.min.js' %}"></script>
 
+<script>
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
 
+                });
+            });
+     </script>
 </html>

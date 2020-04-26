@@ -1,0 +1,202 @@
+{% include 'navigations/side_nav.html' %}
+
+
+
+{% block content %}
+    <div class="page-wrapper">
+            <div class="content">
+
+                <div class="row">
+                    <div class="col-sm-5 col-5">
+                        <h4 class="page-title">Medicine</h4>
+                    </div>
+                    <div class="col-sm-7 col-7 text-right m-b-30">
+                        <a href="{% url 'Medicine:add_manufacturer' %}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Add Manufacturer</a>
+
+                        <a href="{% url 'Medicine:list_medicine' %}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i>Medicine List </a>
+                    </div>
+                     
+                </div>
+
+                {% if error %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Warning!</strong> {{ error }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                {% endif %}
+
+                 {% if success %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> {{ success }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                {% endif %}
+
+                
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form  action="{% url 'Medicine:add_medicies' %}"  method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Medicine Name <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name = "medicinename" required="required">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Category</label>
+                                         <select class="browser-default custom-select" name = "categoryid">
+                                            {% for category in categoryObjs %}
+                                            <option value = "{{ category.pk }}">{{ category.categoryName }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Sub Category</label>
+                                         <select class="browser-default custom-select" name = "subcategoryid">
+                                            {% for subcategory in subcategoryObjs %}
+                                            <option value = "{{ subcategory.pk }}">{{ subcategory.subCategoryName }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Manufacturer</label>
+                                         <select class="browser-default custom-select" name = "manufacturerid">
+                                            {% for manufaturerObj in manufaturerObjs %}
+                                            <option value = "{{ manufaturerObj.pk }}">{{ manufaturerObj.manufaturerName }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Quantity <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="number" name = "quantity" required="required">
+                                    </div>
+                                </div>
+
+
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Decsription </label>
+                                        <input class="form-control" type="text" name = "decsription" >
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Batch Number <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name = "batchnumber" required="required">
+                                    </div>
+                                </div>
+                               
+                              
+                              
+                               
+                              
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Expiry Date <span class="text-danger">*</span></label>
+                                        <div class="cal-icon">
+                                            <input class="form-control datetimepicker" type="text" name = "expiraydate" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Actual Price <span class="text-danger">*</span></label>
+                                        <input class="form-control" type=number step=0.01 name = "actualprice" required="required">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Discounted Price <span class="text-danger">*</span></label>
+                                        <input class="form-control"type=number step=0.01 name = "discountedprice" required="required">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>GST Tax <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name = "gsttax" required="required">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Rack Number <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name = "racknumber" required="required">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Shelf Number <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name = "shelfnumber" required="required">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Remarks <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name = "remark" required="required">
+                                    </div>
+                                </div>
+
+                               
+
+                                  <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Select image </label>
+                                       <input class="upload" type="file" name = "image">
+                                    </div>
+                                </div>
+                               
+                              
+                              
+                            </div>
+                           
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Create Employee</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+			
+        </div>
+
+
+
+
+{% endblock %}
