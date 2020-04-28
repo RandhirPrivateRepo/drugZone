@@ -11,7 +11,7 @@
                         <h4 class="page-title">Update SubCategory</h4>
                     </div>
                     <div class="col-sm-7 col-7 text-right m-b-30">
-                        <a href="{% url 'CategoryAndSubCategory:subcategory_list' %}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> List SubCategory</a>
+                        <a href="{% url 'CategoryAndSubCategory:subcategory_list' %}" class="btn btn-primary btn-rounded"></i>SubCategory List</a>
                     </div>
                 </div>
                 </div>
@@ -51,9 +51,9 @@
                                 
                                  <input class="form-control" type="text" name = "subcategory_description" value = "{{ subcategoryObj.description }}">
                             </div>
-                            <div class="form-group row">
-                                            <label class="col-md-3 col-form-label">Select Category</label>
-                                         <select class="browser-default custom-select" name = "subcategory_categoryid">
+                            <div class="form-group">
+                                        <label>Select Category:</label>
+                                         <select class="form-control" name = "subcategory_categoryid">
                                             {% for category in categories %}
                                                <option value="{{category.id}}"
                                                    {% if category.id == subcategoryObj.category.id %}selected="selected"{% endif %}>
@@ -63,7 +63,7 @@
                                         </select>
                                         </div>
                             <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn">Update SubCategory</button>
+                                <button class="btn btn-primary submit-btn">Save Changes</button>
                             </div>
                         </form>
                     </div>

@@ -29,7 +29,10 @@ urlpatterns = [
     path('labadmin/', include('LabAdmin.urls')),
     path('categorysubcategory/', include('CategoryAndSubcategory.urls')),
     path('medicines/', include('Medicines.urls')),
+    path('consultation/', include('doctorConsultation.urls')),
+    path('prescriptions/', include('prescription.urls')),
 
-    # path('admin/internal/', admin.site.urls),
+
+    # path('admin/internal/', admin.site.urls),prescription
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

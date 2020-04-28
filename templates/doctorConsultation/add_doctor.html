@@ -7,11 +7,13 @@
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-                <h4 class="page-title">Add Employee (Lab-Admin/Sub-Admin) </h4>
+           <div class="col-sm-4 col-3">
+                <h4 class="page-title">Add Doctor</h4>
+            </div>
+            <div class="col-sm-8 col-9 text-right m-b-20">
+                <a href="{% url 'DoctorConsultation:doctor_list_view' %}" class="btn btn-primary float-right btn-rounded">Doctors List</a>
             </div>
         </div>
-
 
         {% if error %}
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -30,57 +32,58 @@
                         </button>
                     </div>
         {% endif %}
-        
+
 
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <form  action="{% url 'UserJourney:add_view' %}"  method="post">
+                <form  action="{% url 'DoctorConsultation:doctor_add_view' %}"  method="post">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-sm-6">
-                            <!-- <span class="text-danger">{{ error }}</span> -->
                             <div class="form-group">
                                 <label>Name <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="name" required="required">
                             </div>
                         </div>
-
-                    
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Email <span class="text-danger">*</span></label>
-                                <input class="form-control" type="email" name='email' required="required">
+                                <label>Experience <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name='experience'>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Password <span class="text-danger">*</span></label>
-                                <input class="form-control" type="password" name='password' required="required">
-                            </div>
-                        </div>
-                      
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Phone <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name='phone' required="required">
+                                <label>Consultation Fee <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name='consultationFee'>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Role  <span class="text-danger">*</span> </label>
-                                <select class="select" name='role'>
-                                    <option value="1">Sub-Admin</option>
-                                    <option  value="2">Lab-Admin</option>
-                                </select>
+                                <label >Time Slots Availability:</label>
+                                  <select multiple class="form-control" name="timeSlots">
+                                    {% for time in times %}
+                                        <option value="{{ time.id }}">{{ time.timeslots }}</option>
+                                    {% endfor %}
+                                    
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Department:</label>
+                                  <select class="form-control"  name="speciality">
+                                    {% for spec in specObj %}
+                                        <option value="{{ spec.id }}">{{ spec.name }}</option>
+                                    {% endfor %}
+                                  </select>
                             </div>
                         </div>
                     </div>
                     <div class="m-t-20 text-center">
-                        <button class="btn btn-primary submit-btn">Create Employee</button>
+                        <button class="btn btn-primary submit-btn">Create Doctor</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 {% endblock %}
-

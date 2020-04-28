@@ -11,7 +11,7 @@
                         <h4 class="page-title">Add SubCategory</h4>
                     </div>
                     <div class="col-sm-7 col-7 text-right m-b-30">
-                        <a href="{% url 'CategoryAndSubCategory:subcategory_list' %}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> List SubCategory</a>
+                        <a href="{% url 'CategoryAndSubCategory:subcategory_list' %}" class="btn btn-primary btn-rounded"></i>SubCategory List</a>
                     </div>
                 </div>
                 </div>
@@ -51,7 +51,7 @@
                                 
                                  <input class="form-control" type="text" name = "subcategory_description"s>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group">
                                             <label class="col-md-3 col-form-label">Select Category</label>
                                          <select class="browser-default custom-select" name = "subcategory_categoryid">
                                          {% for category in categories %}

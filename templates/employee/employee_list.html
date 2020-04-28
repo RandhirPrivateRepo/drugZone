@@ -28,8 +28,9 @@
                                 <th>Email</th>
                                 <th>Mobile</th>
                                 <th style="min-width: 110px;">Join Date</th>
-                                <!-- <th>Role</th> -->
-                                 <th></th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,17 +42,25 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.phone }}</td>
                                 <td>{{ user.date_joined }}</td>
-    <!--                        <td>
-                                    <span class="custom-badge status-green">{{ user.role }}</span>
-                                </td> -->
+                                <td>
+                                    {% if user.role == "1"%}
+                                    <span class="custom-badge status-green">Sub-Admin</span>
+                                    {% else %}
+                                    <span class="custom-badge status-green">Lab-Admin</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if user.is_active %}
+                                    <span class="custom-badge status-green">Active</span>
+                                    {% else %}
+                                    <span  class="custom-badge status-red">Inactive</span>
+                                    {% endif %}
+                                </td>
+
                                 <td class="text-right">
                                     <a href="#" class="btn btn-primary a-btn-slide-text" style="background-color:#00e676;color:white;">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         <span><strong>Edit</strong></span>            
-                                    </a>
-                                    <a href="#" class="btn btn-primary a-btn-slide-text" style="background-color:#00b0ff;color:white;">
-                                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                        <span><strong>Delete</strong></span>            
                                     </a>
                                 </td>
                             </tr>

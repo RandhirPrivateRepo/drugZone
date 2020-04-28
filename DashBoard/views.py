@@ -35,7 +35,7 @@ def test_add_view(request):
             new_test = Test.objects.create(
                 name = name
             ) 
-            return redirect('DashboardApp:dashboard__test_list_view')
+            return render(request, 'Labtest/add_test.html', {"success": "Test Created Successfully"})
             
 def test_list_view(request):
     if request.method == 'GET':
@@ -59,13 +59,13 @@ def sample_add_view(request):
         # try:
         testObj = sample.objects.filter(name=name)
         if testObj:
-            return render(request, 'Labtest/add_sample.html', {"error": "Test already exist with same name"})
+            return render(request, 'Labtest/add_sample.html', {"error": "Sample already exist with same name"})
         else:
 
             new_test = sample.objects.create(
                 name = name
             ) 
-            return redirect('DashboardApp:dashboard__sample_list_view')
+            return render(request, 'Labtest/add_sample.html', {"success": "Sample Created Successfully"})
             
 def sample_list_view(request):
     if request.method == 'GET':
@@ -97,7 +97,7 @@ def labtest_add_view(request):
 
         testObj = LabTest.objects.filter(name=name)
         if testObj:
-            return render(request, 'Labtest/add_labtest.html', {"error": "Test already exist with same name"})
+            return render(request, 'Labtest/add_labtest.html', {"error": "LabTest already exist with same name"})
         else:
 
             new_test = LabTest.objects.create(
@@ -125,7 +125,7 @@ def labtest_add_view(request):
         	        labObj.save()
 
 
-            return redirect('DashboardApp:dashboard__labtest_list_view')
+            return render(request, 'Labtest/add_labtest.html', {"success": "LabTest Created Successfully"})
             
 def labtest_list_view(request):
     if request.method == 'GET':

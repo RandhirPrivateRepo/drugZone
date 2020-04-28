@@ -142,3 +142,14 @@ def add_manufacturer(request):
 		return render(request, template_name, context)
 
 	return render(request, template_name, context)
+
+
+
+def list_manufacturer(request):
+	template_name = 'medicines/manufacturer_list.html'
+	context = {}
+
+	manufacturerObjs = Manufacturer.objects.all()
+	context['manufacturerObjs'] = manufacturerObjs
+
+	return render(request, template_name, context)

@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'UserJourney',
     'LabAdmin',
     'CategoryAndSubcategory',
-    'Medicines'
+    'Medicines',
+    'doctorConsultation',
+    'prescription'
 ]
 
 MIDDLEWARE = [
@@ -93,9 +95,9 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_local_drugzone',
-        'USER': 'ranapostgres',
-        'PASSWORD': 'root',
+        'NAME': 'db_drugzone1',
+        'USER': 'tarjeet',
+        'PASSWORD': 'admin',
         'HOST':'localhost',
         'PORT':''
         # 'OPTIONS': {
