@@ -1,0 +1,60 @@
+
+
+
+
+
+{% include 'navigations/side_nav.html' %}
+
+
+
+{% block content %}
+
+<!-- <div class="page-wrapper"> -->
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title">Precription Orders</h4>
+            </div>
+            <!-- <div class="col-sm-8 col-9 text-right m-b-20">
+                <a href="{% url 'DashboardApp:dashboard__labtest_add_view' %}" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> Add Test</a>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table">
+                        <thead>
+                            <tr>
+                                <th style="min-width:200px;">OrdersId</th>
+                                <th>Disease</th>
+                                <th>Discounted Price</th>
+                                <th></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for test in labtests %}
+                            <tr>
+                                <td>{{ test.name }}</td>
+                                <td>{{ test.actualPrice }}</td>
+                                <td>{{ test.discountedPrice }}</td>
+                                <td class="text-right">
+                                    <a href="#" class="btn btn-primary a-btn-slide-text" style="background-color:#00e676;color:white;">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        <span><strong>Edit</strong></span>            
+                                    </a>
+                                    <a href="#" class="btn btn-primary a-btn-slide-text" style="background-color:#00b0ff;color:white;">
+                                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        <span><strong>Delete</strong></span>            
+                                    </a>
+                                </td>
+                            </tr>
+                            {%  endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

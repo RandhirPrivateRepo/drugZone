@@ -1,0 +1,81 @@
+{% include 'navigations/side_nav.html' %}
+
+
+
+{% block content %}
+
+   <div class="page-wrapper">
+            <div class="content">
+                    <div class="row">
+                    <div class="col-sm-5 col-5">
+                        <h4 class="page-title">UpdateCategory</h4>
+                    </div>
+                    <div class="col-sm-7 col-7 text-right m-b-30">
+                        <a href="{% url 'CategoryAndSubCategory:category_list' %}" class="btn btn-primary btn-rounded"></i>Category List </a>
+                    </div>
+                </div>
+                </div>
+
+
+
+                {% if error %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Warning!</strong> {{ error }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                {% endif %}
+
+                 {% if success %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> {{ success }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                {% endif %}
+
+
+                    
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form  action="{% url 'CategoryAndSubCategory:category_update' pk=categoryObj.pk %}"  method="post">
+                    {% csrf_token %}
+                            <div class="form-group">
+                                <label>Category Name</label>
+                                <input class="form-control" type="text" name = "category_name" required="required" value = "{{ categoryObj.categoryName }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                 <input class="form-control" type="text" name = "category_description"  value = "{{ categoryObj.description }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="display-block">Category Status</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="category_status" id="product_active" value="true" checked>
+                                    <label class="form-check-label" for="product_active">
+                                    Active
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="category_status" id="product_inactive" value="false">
+                                    <label class="form-check-label" for="product_inactive">
+                                    Inactive
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        
+        </div>
+
+{% endblock %}
+

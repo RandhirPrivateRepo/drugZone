@@ -51,7 +51,11 @@ INSTALLED_APPS = [
 
     'DashBoard',
     'UserJourney',
-    'LabAdmin'
+    'LabAdmin',
+    'CategoryAndSubcategory',
+    'Medicines',
+    'doctorConsultation',
+    'prescription'
 ]
 
 MIDDLEWARE = [

@@ -8,10 +8,10 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title">Add Test</h4>
+                <h4 class="page-title">Add Department</h4>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-20">
-                <a href="{% url 'DashboardApp:dashboard__test_list_view' %}" class="btn btn-primary float-right btn-rounded">Test List</a>
+                <a href="{% url 'DoctorConsultation:speciality_list_view' %}" class="btn btn-primary float-right btn-rounded">Department List</a>
             </div>
         </div>
 
@@ -34,10 +34,9 @@
                     </div>
         {% endif %}
 
-
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <form  action="{% url 'DashboardApp:dashboard__test_add_view' %}"  method="post">
+                <form  action="{% url 'DoctorConsultation:speciality_add_view' %}"  method="post">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-sm-6">
@@ -49,7 +48,7 @@
                         </div>
                     </div>
                     <div class="m-t-20 text-center">
-                        <button class="btn btn-primary submit-btn">Create Test</button>
+                        <button class="btn btn-primary submit-btn">Create Department</button>
                     </div>
                 </form>
             </div>

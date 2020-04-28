@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+
     <!--[if lt IE 9]>
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
@@ -54,6 +55,16 @@
 <script src="{% static 'assets/js/Chart.bundle.js' %}"></script>
 <script src="{% static 'assets/js/chart.js' %}"></script>
 <script src="{% static 'assets/js/app.js' %}"></script>
+<script src="{% static 'assets/js/moment.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}"></script>
+  <script src="{% static 'assets/js/select2.min.js' %}"></script>
 
+<script>
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
 
+                });
+            });
+     </script>
 </html>

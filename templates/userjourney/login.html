@@ -40,7 +40,14 @@
             <div class="account-box">
                 <form action="{% url 'UserJourney:login_view' %}" class="form-signin" method="post">
                     {% csrf_token %}
-                    <span class="text-danger">{{ error }}</span>
+                    {% if error %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Warning!</strong> {{ error }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                    {% endif %}
                     <div class="account-logo">
                         <a href="index-2.html"><img src="/static/assets/img/logo.png" alt=""></a>
                     </div>
