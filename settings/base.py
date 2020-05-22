@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # APIS APP
     'drugZoneUsers.apps.DrugzoneusersConfig',
+    'helpers',
 
    
     'rest_framework',
@@ -55,7 +56,8 @@ INSTALLED_APPS = [
     'CategoryAndSubcategory',
     'Medicines',
     'doctorConsultation',
-    'prescription'
+    'prescription',
+    'inventory',
 ]
 
 MIDDLEWARE = [

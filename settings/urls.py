@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 	path('jet/', include('jet.urls', 'jet')),
-	path('api/v1/user/', include('drugZoneUsers.urls')),    
+
     path('admin/', admin.site.urls),
     path('', include('UserJourney.urls')),
     path('dashboard/', include('DashBoard.urls')),
@@ -31,8 +31,10 @@ urlpatterns = [
     path('medicines/', include('Medicines.urls')),
     path('consultation/', include('doctorConsultation.urls')),
     path('prescriptions/', include('prescription.urls')),
-
-
+    # path('inventory/', include('inventory.urls')),
     # path('admin/internal/', admin.site.urls),prescription
+
+	path('api/v1/user/', include('drugZoneUsers.urls')),
+    path('api/v1/lab/', include('DashBoard.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

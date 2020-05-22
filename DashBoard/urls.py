@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import *
 from . import views
 
 app_name = "DashboardApp"
@@ -14,4 +15,11 @@ urlpatterns = [
 
     path('labtest-add/', views.labtest_add_view, name='dashboard__labtest_add_view'),
     path('labtest-list/', views.labtest_list_view, name='dashboard__labtest_list_view'),
+
+    #---------------------------------REST URLS-----------------------------------__#
+
+    path('labtests/', LabTestAPIView.as_view()),
+    path('labtests/<int:testid>/', LabTestDetailAPIView.as_view()),
+    path('bannerimages/', BannerImagesAPI.as_view()),
+
 ]

@@ -33,6 +33,9 @@ class DoctorList(models.Model):
 	experience = models.CharField(max_length = 255,null = True, blank = True)
 	timeSlots = models.ManyToManyField(TimeSlots,null = True,blank =True)
 	consultationFee = models.FloatField(default = 0.0)
+	phone = models.CharField(max_length = 255,null = True, blank = True)
+	address = models.CharField(max_length = 255,null = True, blank = True)
+	uploadDocument = models.FileField(upload_to="media/uploads/", null = True, blank = True)
 	createdAt = models.DateTimeField(auto_now_add = True)
 	updatedAt = models.DateTimeField(auto_now = True)
 	

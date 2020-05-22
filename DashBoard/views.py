@@ -1,16 +1,28 @@
 from django.shortcuts import render
 
 from .models import *
+from doctorConsultation.models import DoctorList
 from django.shortcuts import redirect
+
+from .serializers import * 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+import traceback
+
+from helpers.models import BannerImages
+
+from helpers.serializers import BannerImagesSerializer
+
 
 
 
 
 def dashboard_view(request):
     if request.user.is_authenticated:
-    	template_name = 'dashboard/index.html'
-    	context = {}
-    	return render(request, template_name, context)
+        template_name = 'dashboard/index.html'
+        doctors = DoctorList.objects.all()[:6]
+        return render(request, template_name, {'doctors':doctors})
     else:
         template_name = 'userJourney/login.html'
         context = {}
@@ -134,3 +146,64 @@ def labtest_list_view(request):
             return render(request, 'Labtest/labtest_list.html', {'labtests':labtests})
     else:
         return render(request, 'userjourney/login.html')
+
+
+#---------------------------------------------------------------------- REST APIS FOR LABTEST ---------------------------------------------------------------------------------#
+
+class BannerImagesAPI(APIView):
+
+    def get(self,request):
+        user = request.user
+        try:
+            if not self.request.query_params.get('type'):
+                return Response({"Error":"please define type"},status=status.HTTP_400_BAD_REQUEST)
+
+            if self.request.query_params.get('type') == 'HomePage':
+                objs = BannerImages.objects.filter(bannerType = 'HomePage')
+                serialized = BannerImagesSerializer(objs, many=True, context = {'request': request})
+            elif self.request.query_params.get('type') == 'TestPage':
+                objs = BannerImages.objects.filter(bannerType = 'TestPage')
+                serialized = BannerImagesSerializer(objs, many=True, context = {'request': request})
+
+            return Response(serialized.data,status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"Error":str(e)},status=status.HTTP_400_BAD_REQUEST)
+
+class LabTestAPIView(APIView):
+
+    def get(self,request):
+        user = request.user
+        try:
+            if self.request.query_params.get('popular') == 'True':
+                objs = LabTest.objects.filter(popularTest=True)
+
+            if self.request.query_params.get('package') == 'True':
+                objs = LabTest.objects.filter(packageOrSingle='Package')
+
+            if self.request.query_params.get('testtype') == 'pathology':
+                objs = LabTest.objects.filter(testType='Pathology')
+
+            if self.request.query_params.get('testtype') == 'radiology':
+                objs = LabTest.objects.filter(testType='Radiology')
+            
+            if not self.request.query_params:
+                objs = LabTest.objects.all()
+            
+            serialized = LabTestSerializer(objs, many=True, context = {'request': request})
+            return Response(serialized.data,status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"Error":str(e)},status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class LabTestDetailAPIView(APIView):
+
+    def get(self,request,testid):
+        user = request.user
+        try:
+            objs = LabTest.objects.get(id=testid)
+            serialized = LabTestSerializer(objs, context = {'request': request})
+            return Response(serialized.data,status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"Error":str(e)},status=status.HTTP_400_BAD_REQUEST)
+

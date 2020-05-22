@@ -21,6 +21,11 @@ ROLE_TYPE= (
 		('1', 'Sub-Admin'),
         ('2', 'Lab-Admin'))
 
+GENDER_TYPE = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+
 class UserManager(BaseUserManager):
 	use_in_migrations = True
 
@@ -50,6 +55,10 @@ class CustomUser(AbstractUser):
 	profileImage = models.ImageField(upload_to= "media/uploads/",null = True, blank = True ,verbose_name='Profile Image')
 	deviceToken = models.CharField(max_length = 255, null = True, blank = True)
 	deviceType = models.CharField(max_length = 2, choices = DEVICE_TYPE, null = True, blank = True)
+	uploadDocument = models.FileField(upload_to="media/uploads/", null = True, blank = True)
+	address = models.TextField(null=True,blank=True)
+	gender = models.CharField(max_length = 8, choices = GENDER_TYPE, null = True, blank = True)
+	age = models.IntegerField(default=0,null=True,blank=True)
 	otpVerified = models.BooleanField(default=False)
 	createdAt = models.DateTimeField(auto_now_add = True)
 	updatedAt = models.DateTimeField(auto_now = True)

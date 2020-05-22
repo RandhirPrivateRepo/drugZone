@@ -84,6 +84,9 @@ def doctor_add_view(request):
         experience = request.POST.get('experience')
         timeSlots = request.POST.getlist('timeSlots')
         consultationFee = request.POST.get('consultationFee')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        uploadDocument = request.FILES.get('uploadDocument')
 
         docObj = DoctorList.objects.filter(name=name)
         if docObj:
@@ -93,7 +96,10 @@ def doctor_add_view(request):
             new_test = DoctorList.objects.create(
                 name = name,
                 experience = experience,
-                consultationFee = consultationFee
+                consultationFee = consultationFee,
+                phone = phone,
+                address = address,
+                uploadDocument = uploadDocument
             ) 
 
             docObj = DoctorList.objects.get(name = name)

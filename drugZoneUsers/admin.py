@@ -13,7 +13,7 @@ from rest_framework.authtoken.admin import Token
 class CustomUserAdmin(UserAdmin):
 	# ...
 	fieldsets = (
-		('Personal info', {'fields': ('email', 'password','name','phone','role','profileImage')}),
+		('Personal info', {'fields': ('email', 'password','name','phone','role','profileImage','uploadDocument')}),
 		# ('Important dates', {'fields': ('last_login', 'date_joined')}),
 		('Permissions', {'fields': ('is_active', 'is_staff', 'user_permissions')}),
     )

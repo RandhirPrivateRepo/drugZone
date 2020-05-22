@@ -88,6 +88,7 @@ def add_view(request):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         role = request.POST.get('role')
+        uploadDocument = request.FILES.get('uploadDocument')
         print (role)
         # try:
         user = CustomUser.objects.filter(email=email)
@@ -102,6 +103,7 @@ def add_view(request):
             userObj = CustomUser.objects.get(email=email)
             userObj.name = name
             userObj.role = role
+            userObj.uploadDocument = uploadDocument
             userObj.phone = phone
             userObj.is_staff = True
             # user.role = 3
