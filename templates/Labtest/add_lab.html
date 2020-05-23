@@ -1,0 +1,58 @@
+{% include 'navigations/side_nav.html' %}
+
+
+
+{% block content %}
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title">Add Lab</h4>
+            </div>
+            <div class="col-sm-8 col-9 text-right m-b-20">
+                <a href="{% url 'DashboardApp:dashboard__labs_list_view' %}" class="btn btn-primary float-right btn-rounded">Lab List</a>
+            </div>
+        </div>
+
+
+        {% if error %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Warning!</strong> {{ error }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+        {% endif %}
+
+         {% if success %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> {{ success }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+        {% endif %}
+
+
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form  action="{% url 'DashboardApp:dashboard__labs_add_view' %}"  method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- <span class="text-danger">{{ error }}</span> -->
+                            <div class="form-group">
+                                <label>Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="name" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn">Create Lab</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

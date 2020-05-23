@@ -94,11 +94,13 @@ def labtest_add_view(request):
         if request.user.is_authenticated:
             samples = sample.objects.all()
             tests = Test.objects.all()
-            return render(request, 'Labtest/add_labtest.html' , {'samples':samples,'tests':tests})
+            labs = Labs.objects.all()
+            return render(request, 'Labtest/add_labtest.html' , {'samples':samples,'tests':tests,'labs':labs})
         else:
             return render(request, 'userjourney/login.html')
     
     if request.method == 'POST':
+        print (request.POST)
         name = request.POST.get('name')
         actualPrice = request.POST.get('actualPrice')
         discountedPrice =request.POST.get('discountedPrice')
@@ -106,44 +108,128 @@ def labtest_add_view(request):
         testDescription = request.POST.get('testDescription')
         testIncluded = request.POST.getlist('testIncluded') 
         testRequirements = request.POST.getlist('testRequirements')
+        minimumPayment = request.POST.get('minimumPayment')
+        testType = request.POST.get('testType')
+        packageOrSingle = request.POST.get('packageOrSingle')
+        labAvail = request.POST.getlist('labAvail')
+        popularTest = request.POST.get('popularTest')
 
         testObj = LabTest.objects.filter(name=name)
         if testObj:
             return render(request, 'Labtest/add_labtest.html', {"error": "LabTest already exist with same name"})
         else:
+            try:
+                new_test = LabTest.objects.create(
+                    name = name,
+                    actualPrice = actualPrice,
+                    discountedPrice = discountedPrice,
+                    image = image,
+                    testDescription = testDescription,
+                    minimumPayment = minimumPayment,
+                    testType = testType,
+                    packageOrSingle = packageOrSingle,
+                    popularTest = popularTest
+                    
+                ) 
 
-            new_test = LabTest.objects.create(
-                name = name,
-                actualPrice = actualPrice,
-                discountedPrice = discountedPrice,
-                image = image,
-                testDescription = testDescription
-                
-            ) 
-
-            labObj = LabTest.objects.get(name = name)
-
-
-            for obj in testIncluded:
-                if Test.objects.filter(id=obj):
-            	    obj1 = Test.objects.get(id=obj)
-            	    labObj.testIncluded.add(obj1)
-            	    labObj.save()
-
-            for obj in testRequirements:
-                if sample.objects.filter(id=obj):
-        	        obj1 = sample.objects.get(id=obj)
-        	        labObj.testRequirements.add(obj1)
-        	        labObj.save()
+                labObj = LabTest.objects.get(name = name)
 
 
-            return render(request, 'Labtest/add_labtest.html', {"success": "LabTest Created Successfully"})
+                for obj in testIncluded:
+                    if Test.objects.filter(id=obj):
+                	    obj1 = Test.objects.get(id=obj)
+                	    labObj.testIncluded.add(obj1)
+                	    labObj.save()
+
+                for obj in testRequirements:
+                    if sample.objects.filter(id=obj):
+            	        obj1 = sample.objects.get(id=obj)
+            	        labObj.testRequirements.add(obj1)
+            	        labObj.save()
+
+                for obj in labAvail:
+                    if Labs.objects.filter(id=obj):
+                        obj1 = Labs.objects.get(id=obj)
+                        labObj.labAvail.add(obj1)
+                        labObj.save()
+
+
+                return render(request, 'Labtest/add_labtest.html', {"success": "LabTest Created Successfully"})
+            except Exception as e:
+                return render(request, 'Labtest/add_labtest.html', {"error": str(e)})
             
 def labtest_list_view(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
             labtests = LabTest.objects.all()
             return render(request, 'Labtest/labtest_list.html', {'labtests':labtests})
+    else:
+        return render(request, 'userjourney/login.html')
+
+
+
+def labs_add_view(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            return render(request, 'Labtest/add_lab.html')
+        else:
+            return render(request, 'userjourney/login.html')
+    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        # try:
+        labObj = Labs.objects.filter(labName=name)
+        if labObj:
+            return render(request, 'Labtest/add_lab.html', {"error": "Lab already exist with same name"})
+        else:
+
+            new_lab = Labs.objects.create(
+                labName = name
+            ) 
+            return render(request, 'Labtest/add_lab.html', {"success": "Lab Created Successfully"})
+            
+def labs_list_view(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            labs = Labs.objects.all()
+            return render(request, 'Labtest/lab_list.html', {'labs':labs})
+    else:
+        return render(request, 'userjourney/login.html')
+
+
+def banner_add_view(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            return render(request, 'Banner/add_banner.html')
+        else:
+            return render(request, 'userjourney/login.html')
+    
+    if request.method == 'POST':
+        bannerImage = request.FILES.get('bannerImage')
+        bannerDescription = request.POST.get('bannerDescription')
+        bannerType = request.POST.get('bannerType')
+        # try:
+        # bannObj = BannerImages.objects.filter(labName=name)
+        # if bannObj:
+        #     return render(request, 'Banner/add_banner.html', {"error": "Banner already exist with same name"})
+        # else:
+        try:
+            new_lab = BannerImages.objects.create(
+                bannerImage = bannerImage,
+                bannerDescription = bannerDescription,
+                bannerType = bannerType
+            ) 
+            return render(request, 'Banner/add_banner.html', {"success": "Banner Created Successfully"})
+
+        except Exception as e:
+            return render(request, 'Banner/add_banner.html', {"error": str(e)})
+
+            
+def banner_list_view(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            banners = BannerImages.objects.all()
+            return render(request, 'Banner/banner_list.html', {'banners':banners})
     else:
         return render(request, 'userjourney/login.html')
 

@@ -31,10 +31,13 @@
                     <a href="{% url 'CategoryAndSubCategory:subcategory_list' %}"><i class="fa fa-list-alt"></i> <span>Sub-Categories</span></a>                    
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-plus-circle"></i></i> <span>Products</span></a>
+                    <a href="#"><i class="fa fa-plus-circle"></i></i> <span>Inventory</span></a>
                 </li>
                 <li>
                     <a href="{% url 'Medicine:list_manufacturer' %}"><i class="fa fa-industry"></i></i> <span>Manufacturers</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'DashboardApp:dashboard__banner_list_view' %}"><i class="fa fa-picture-o"></i></i> <span>Banner Images</span></a>
                 </li>
                 <li>
                     <a href="{% url 'Prescription:prescription_list_view' %}"><i class="fa fa-wheelchair"></i> <span>Prescriptions</span><span class="badge badge-pill bg-danger float-right">2</span></a>
@@ -55,11 +58,12 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-calendar-check-o"></i> <span> Lab Tests </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="{% url 'DashboardApp:dashboard__test_list_view' %}">Test</a></li>
+                        <li><a href="{% url 'DashboardApp:dashboard__test_list_view' %}">Test Included</a></li>
                         <li><a href="{% url 'DashboardApp:dashboard__sample_list_view' %}">Test Samples</a></li>
-                        <li><a href="{% url 'DashboardApp:dashboard__labtest_list_view' %}">Pathology Test</a></li>
-                        <li><a href="#">Pathology Test Orders</a></li>
-                        <li><a href="#">Pathology Test Reports</a></li>
+                        <li><a href="{% url 'DashboardApp:dashboard__labs_list_view' %}">Labs </a></li>
+                        <li><a href="{% url 'DashboardApp:dashboard__labtest_list_view' %}">Lab Test</a></li>
+                        <li><a href="#">Lab Orders</a></li>
+                        <li><a href="#">Lab Reports</a></li>
                         <!-- <li><a href="expenses.html">Expenses</a></li> -->
                         <!-- <li><a href="taxes.html">Taxes</a></li> -->
                         <!-- <li><a href="provident-fund.html">Provident Fund</a></li> -->
